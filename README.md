@@ -13,6 +13,10 @@
   <img src="https://img.shields.io/badge/Maven-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white" alt="Maven" />
 </p>
 
+<p align="center">
+  <img src="./docs/swagger.png" alt="Documentação Swagger da Pomodoro API" width="800" />
+</p>
+
 ---
 
 ## 📌 Sobre o Projeto
@@ -150,6 +154,7 @@ pomodoro-api/
 ├── src/main/resources/
 │   └── application.properties
 ├── src/test/            # Testes
+├── docs/                # Imagens do README
 ├── .env.example
 ├── docker-compose.yml
 ├── Dockerfile
