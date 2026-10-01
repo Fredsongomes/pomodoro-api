@@ -1,4 +1,4 @@
-<h1 align="center">🍅 Pomodoro API</h1>
+<h1 align="center">Pomodoro API</h1>
 
 <p align="center">
   API REST de gerenciamento de tarefas, pensada como back-end para o app Pomodoro <a href="https://github.com/Fredsongomes/Projeto-Fokus-React">Fokus</a>.
