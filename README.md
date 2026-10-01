@@ -68,21 +68,24 @@ Para parar mantendo os dados, use `docker compose down`. Para apagar o banco tam
 
 ### Opção 2: local
 
-Pré-requisitos: **Java 25** e um **PostgreSQL** acessível.
+Pré-requisitos: **Java 25** e um **PostgreSQL** na porta **5432**, que pode ser:
 
-O jeito mais simples é subir só o banco pelo Docker (ele fica na porta **5433** do host) e rodar a API pela IDE ou pelo terminal:
+- **instalado na máquina:** crie um banco chamado `pomodoro`; ou
+- **pelo Docker:** suba só o banco com `docker compose up -d postgres`.
+
+Depois, rode a API pela IDE ou pelo terminal informando a senha do banco:
 
 ```sh
-docker compose up -d postgres
-
 # Linux/macOS
-DB_URL=jdbc:postgresql://localhost:5433/pomodoro DB_PASSWORD=sua-senha ./mvnw spring-boot:run
+DB_PASSWORD=sua-senha ./mvnw spring-boot:run
 
 # Windows (PowerShell)
-$env:DB_URL="jdbc:postgresql://localhost:5433/pomodoro"; $env:DB_PASSWORD="sua-senha"; ./mvnw spring-boot:run
+$env:DB_PASSWORD="sua-senha"; ./mvnw spring-boot:run
 ```
 
-> O Spring **não lê o arquivo `.env`** sozinho. Ao rodar fora do Docker, defina as variáveis no terminal ou na Run Configuration da IDE. Sem elas, a API tenta conectar em `localhost:5432` com usuário e senha `postgres`.
+> O Spring **não lê o arquivo `.env`** sozinho. Ao rodar fora do Docker, defina as variáveis no terminal ou na Run Configuration da IDE. Sem elas, a API conecta em `localhost:5432` com usuário e senha `postgres`.
+
+> Se a porta 5432 já estiver em uso (por um Postgres instalado, por exemplo) e você quiser usar o banco do Docker, defina outra porta em `DB_PORT` no `.env` (ex.: `5433`) e aponte a API para ela com `DB_URL=jdbc:postgresql://localhost:5433/pomodoro`.
 
 A tabela `task` é criada automaticamente pelo Hibernate (`ddl-auto=update`).
 
@@ -95,6 +98,7 @@ Veja [`.env.example`](./.env.example).
 | `DB_PASSWORD` | Senha do Postgres (obrigatória no Docker) | `postgres` (local) |
 | `DB_URL` | URL JDBC do banco | `jdbc:postgresql://localhost:5432/pomodoro` |
 | `DB_USERNAME` | Usuário do banco | `postgres` |
+| `DB_PORT` | Porta do Postgres no host (Docker) | `5432` |
 | `API_PORT` | Porta da API no host (Docker) | `8080` |
 
 ### Testes
